@@ -1,0 +1,81 @@
+C Opaque Object Design
+  - The opaque object design pattern in C is a software design pattern wherein an interface is created for an object that allows for utilization of the object in any program while simultaneously protecting its data.
+    It is not equivalent to doing object oriented programming as this is not possible, but rather it is attempting to implement some of the features of object oriented programming, such as creating objects with classes and the member functions and data protection that comes with that, in a non-object oriented programming language like C.
+  - Every opaque object interface interacts with its object as an "opaque object" meaning a void pointer instead of a regular pointer.
+    A void pointer holds the address of something but its type is unknown.
+    These opaque object void pointers are also referred to as handles.
+    Since void pointers can't be dereferenced unlike regular pointers, then the internal components of the object can't be directly modified outside of the scope of the object's implementation file similar to how in object oriented programming member variables can only be directly accessed within the class's member functions.
+    Therefore, the only way to interact with the object is with the interface functions which are designed to always keep the object in a valid state, and as a result the object will never be in an invalid state and the integrity of its data is always protected.
+    Since opaque object's are void pointers which have an unknown type, it is a convention to typedef "void*" to the name of the object being represented in all caps so that the user of the interface can easily see which type of object it is even though from the perspective of the C language it's still a void pointer.
+  - The rules that determine what makes any given object valid is unique to every object and is based on what the data is supposed to represent.
+    For example, if there were an object to represent a date, it could store the day, month, and year as integers, and each of those variables has a restricted range of values that are valid for them such as 1 through 12 for the month.
+    The date opaque object interface would therefore be designed in such a way that the month could never be set to anything other than numbers in the range of 1 - 12.
+
+
+Preconditions and Postconditions
+  - Preconditions describe what is guaranteed to be true before a function is called and any other important information.
+    This includes information about the parameters including their purpose and any restrictions on their values.
+    It is therefore necessary to ensure the preconditions are adhered to before a function is called else errors could happen.
+  - In an opaque object interface's preconditions, it is common to see the phrase that "[variable] is a handle to a valid [type] object".
+    This means two important things: First, it means that it's assumed that the handle used with the function will always be for an object of that type.
+    However, if an object of a different type were used, the C language wouldn't be able to catch this error since it's still being used with a void pointer where the type is unknown so a type mismatch isn't caught.
+    Therefore, it's the responsibility of the user of the interface to ensure a handle to an object of a different type is never used with that function.
+    Second, it means that it's assumed the handle is not NULL and actually stores the address of an object, and it's assumed that the object is in a valid state.
+    This eliminates the need to have to check if the handle is NULL at the beginning of every function call, eliminates the need to have to account for the object being in an invalid state, and therefore everything that happens within the function happens with these assumptions.
+    However, once again it's a tradeoff, and it's the responsibility of the user of the interface to ensure that a NULL handle is never used with the function, and that the interface is designed so that the object could never be in an invalid state.
+  - Postconditions describe what happens as a result of the function being called.
+    This includes general information about what the function does, how any of the parameters are affected if at all, and the return value.
+
+
+
+
+Matrix Opaque Object Interface
+  - The matrix opaque object interface allows for the use of matrices in any program.
+    It is designed so that the matrix objects are always kept in a valid state.
+    A valid matrix adheres to the following rules:
+        1) The matrix object contains the matrix of entries where each entry is a floating point number.
+             1.1) Although a matrix conceptually is a 2D array, it is implemented using a 1D array as this is more efficient for memory allocation.
+             1.2) The array is not NULL.
+        2) The matrix object contains two integers to track the rows and columns.
+             2.1) The rows and columns are both at least 1.
+        3) The matrix object contains an integer to track the maximum length of all the entries in the matrix.
+             3.1) The length of an entry uses the following rules:
+                     - If the entry can be represented as an integer, the length will use just the characters of the integer.
+                       For example, the length of 100.0000 is 3 since it is equivalent to 100
+                     - If otherwise, the length will exclude trailing zeroes.
+                       For example, the length of 100.5000 is 5 since it is equivalent to 100.5
+
+
+
+
+Matrix Operation rules
+  - Multiplication
+      - Formula: A x B for two matrices A and B.
+      - Although more than two matrices can be multiplied, the program is limited to only multiplying two matrices.
+      - Two matrices can be multiplied only if the columns of the first matrix equal the rows of the second matrix.
+          - For example, a 3 x 5 matrix can be multiplied with a 5 x 4 matrix but not a 6 x 4 matrix.
+  - Addition
+      - Formula: A + B + C... for matrices A, B, C...
+      - At least two matrices must be used in the addition operation.
+      - Any given set of matrices can only be added if their dimensions are equal.
+          - For example, a 3 x 5 matrix could be added with another 3 x 5 matrix but not a 3 x 4 matrix.
+  Subtraction
+      - Formula: A - B - C... for matrices A, B, C...
+      - At least two matrices must be used in the subtraction operation.
+      - Any given set of matrices can only be subtracted if their dimensions are equal.
+          - For example, a 3 x 5 matrix could be subtracted with another 3 x 5 matrix but not a 3 x 4 matrix.
+  Power
+      - Formula: A^P for matrix A with power P.
+      - A must be a square matrix meaning its rows and columns are the same.
+      - P must be a positive integer.
+  Transpose
+      - Formula: A^T for matrix A.
+      - A can be any matrix.
+  Determinant
+      - Formula: det(A) for matrix A.
+      - A must be a square matrix meaning its rows and columns are the same.
+  Inverse
+      - Formula: A^-1 for matrix A.
+      - A must be a square matrix meaning its rows and columns are the same.
+      - The inverse of a matrix can be calculated only if isn't invertible.
+        A matrix is invertible if its determinant is 0.
