@@ -43,8 +43,8 @@ Success
   - Reason:        No memory allocation failure.
   - Summary:       Adjusts the dimensions of a matrix with a given amount of rows and columns.
                    If the matrix doesn't exist it is created first.
-				   If the matrix exists, its dimensions are adjusted.
-				   The values of all the entries are set to 0.
+		   If the matrix exists, its dimensions are adjusted.
+                   The values of all the entries are set to 0.
   - Return value:  SUCCESS
   - ppMx:          If it is a pointer to a pointer to a valid matrix object, the matrix's dimensions are adjusted.
                    If is is pointer to a NULL pointer, a new matrix is created with those dimensions and the pointer it points to stores the address of the new matrix.
@@ -52,8 +52,8 @@ Failure
   - Reason:        Memory allocation failure.
   - Summary:       Doesn't adjust the dimensions of a matrix and nothing of signifiance happens.
                    If the matrix doesn't exist it is created first.
-				   If the matrix exists, its dimensions are adjusted.
-				   The values of all the entries are set to 0.
+		   If the matrix exists, its dimensions are adjusted.
+		   The values of all the entries are set to 0.
   - Return value:  SUCCESS
   - ppMx:          If it was a pointer to a pointer to a valid matrix object, the state of the matrix before the function call is preserved.
                    If is was pointer to a NULL pointer, the pointer remains NULL.
@@ -66,9 +66,9 @@ FUNCTION
   - Name:     at
   - Purpose:  Get the actual index in the 1D array using the row-column coordinates of the 2D matrix.
               For example:
-			  2D matrix      2D array       1D array      
-			  [R1C1] [R1C2]  [0][0] [0][1]  [0]   [1]   [2]   [3]
-			  [R2C1] [R2C2]  [1][0] [1][1]  [R1C1][R1C2][R2C1][R2C2]
+	      2D matrix      2D array       1D array      
+	      [R1C1] [R1C2]  [0][0] [0][1]  [0]   [1]   [2]   [3]
+	      [R2C1] [R2C2]  [1][0] [1][1]  [R1C1][R1C2][R2C1][R2C2]
 PRECONDITION
   - pMX
       Purpose:       Matrix to get the index of.
@@ -98,9 +98,9 @@ FUNCTION
   - Purpose:  Get the actual index in the 1D array using the row-column coordinates of the 2D matrix.
               This function is a modified version of the at function for when the entries are stored in an array by itself and not within a matrix object
               For example:
-			  2D matrix      2D array       1D array      
-			  [R1C1] [R1C2]  [0][0] [0][1]  [R1C1][R1C2][R2C1][R2C2]
-			  [R2C1] [R2C2]  [1][0] [1][1]
+              2D matrix      2D array       1D array      
+	      [R1C1] [R1C2]  [0][0] [0][1]  [R1C1][R1C2][R2C1][R2C2]
+	      [R2C1] [R2C2]  [1][0] [1][1]
 PRECONDITION
   - rows
       Purpose:       Rows of the entries array (2D matrix not within a matrix object).
@@ -132,7 +132,7 @@ FUNCTION
   - Name:     calcEntryLength
   - Purpose:  Calculate the length of an entry not including trailing 0s.
                 - If the entry is equivalent to an integer, it will be the length of the integer part (i.e. 1024.0 = length 4).
-				- If otherwise,it will not include trailing 0s (i.e. 1.5000 = length 3).
+		- If otherwise,it will not include trailing 0s (i.e. 1.5000 = length 3).
 PRECONDITION
   - entry
       Purpose:       Entry to calculate the length of.
@@ -175,7 +175,7 @@ FUNCTION
   - Name:     opAdjugate
   - Purpose:  Perform the matrix adjugate operation.
               The adjugate of a matrix is the matrix that is the transpose of the matrix of its cofactors.
-			  Used in the matrix inverse operation.
+	      Used in the matrix inverse operation.
 PRECONDITION
   - pMx
       Purpose:       Matrix to calculate the adjugate of.
