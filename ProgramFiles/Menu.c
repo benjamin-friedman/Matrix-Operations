@@ -74,10 +74,10 @@ FUNCTION
 PRECONDITION
   - cols1
       Purpose:       The columns of matrix 1.
-	  Restrictions:  Any positive integer.
+      Restrictions:  Any positive integer.
   - rows2
       Purpose:       The rows of matrix 2.
-	  Restrictions:  Any positive integer. 
+      Restrictions:  Any positive integer. 
 POSTCONDITION
 Success
   - Reason:        All cases.
@@ -101,7 +101,7 @@ PRECONDITION
   - pMxNum
       Purpose:       Indicate if "1st" or "2nd" should be printed for multiplication.
       Restrictions:  If operation is multiplication, the integer it points to is 1 or 2.
-					 NULL if otherwise.
+		     NULL if otherwise.
 POSTCONDITION
 Success
   - Reason:        All cases.
@@ -124,13 +124,13 @@ PRECONDITION
   - pMxNum
       Purpose:       Indicate if "1st", "2nd", "3rd"... should be printed for addition and subtraction.
       Restrictions:  If operation is addition or subtraction, the integer it points to is any positive integer.
-	                 NULL if otherwise.
+	             NULL if otherwise.
   - rows
       Purpose:       The rows of the matrix for which the prompt is being displayed.
-	  Restrictions:  Any positive integer.
+      Restrictions:  Any positive integer.
   - cols
       Purpose:       The columns of the matrix for which the prompt is being displayed.
-	  Restrictions:  Any positive integer.     
+      Restrictions:  Any positive integer.     
 POSTCONDITION
 Success
   - Reason:        All cases.
