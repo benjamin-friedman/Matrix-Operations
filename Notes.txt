@@ -59,22 +59,22 @@ Matrix Operation Rules
       - At least two matrices must be used in the addition operation.
       - Any given set of matrices can only be added if their dimensions are equal.
           - For example, a 3 x 5 matrix could be added with another 3 x 5 matrix but not a 3 x 4 matrix.
-  Subtraction
+  - Subtraction
       - Formula: A - B - C... for matrices A, B, C...
       - At least two matrices must be used in the subtraction operation.
       - Any given set of matrices can only be subtracted if their dimensions are equal.
           - For example, a 3 x 5 matrix could be subtracted with another 3 x 5 matrix but not a 3 x 4 matrix.
-  Power
+  - Power
       - Formula: A^P for matrix A with power P.
       - A must be a square matrix meaning its rows and columns are the same.
       - P must be a positive integer.
-  Transpose
+  - Transpose
       - Formula: A^T for matrix A.
       - A can be any matrix.
-  Determinant
+  - Determinant
       - Formula: det(A) for matrix A.
       - A must be a square matrix meaning its rows and columns are the same.
-  Inverse
+  - Inverse
       - Formula: A^-1 for matrix A.
       - A must be a square matrix meaning its rows and columns are the same.
       - The inverse of a matrix can be calculated only if isn't invertible.
