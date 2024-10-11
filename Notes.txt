@@ -48,7 +48,7 @@ Matrix Opaque Object Interface
 
 
 
-Matrix Operation rules
+Matrix Operation Rules
   - Multiplication
       - Formula: A x B for two matrices A and B.
       - Although more than two matrices can be multiplied, the program is limited to only multiplying two matrices.
